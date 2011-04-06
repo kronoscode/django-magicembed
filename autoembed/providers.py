@@ -30,7 +30,7 @@ class Youtube(Provider):
         return html % (self.size[0], self.size[1], self.video_id)
 
     def render_thumbnail(self, link_to='#'):
-        return '''<a href="%s"><img src="http://img.youtube.com/vi/%s/0.jpg" /></a>''' % (link_to, self.video_id)
+        return '''http://img.youtube.com/vi/%s/0.jpg''' % (self.video_id)
 
 
 class Vimeo(Provider):
@@ -48,29 +48,29 @@ class Vimeo(Provider):
 
     def render_thumbnail(self, link_to="#"):
         api_response = simplejson.loads(urllib.urlopen(self.api_url).read())
-        return '''<a href="%s"><img src="%s" /></a>''' % (link_to, api_response[0]['thumbnail_medium'])
+        return api_response[0]['thumbnail_medium']
 
-class Blip(Provider):
+class Embedly(Provider):
 
     def __init__(self, url, size=(640, 480)):
-        super(Blip, self).__init__(url, size)
+        super(Embedly, self).__init__(url, size)
         self.api_url = 'http://api.embed.ly/1/oembed?url=%s&maxwidth=%s&format=json' % (url, size[0])
-        pattern = re.compile('http://blip\.tv/(play|file)/([0-9]*)')
-        self.video_id = pattern.match(url).groups()[1]
 
     def render_video(self):
         return self._call_api()['html'] 
 
-    def render_thumbnail(self, link_to="#"):
-        return '''<a href="%s"><img src="%s" /></a>''' % (link_to ,self._call_api()['thumbnail_url']) 
+    def render_thumbnail(self):
+        return self._call_api()['thumbnail_url']
 
     def _call_api(self):
         data = simplejson.loads(urllib.urlopen(self.api_url).read())
         return data
 
-def return_provider(url, size=None):
+def get_provider(url, size=None):
     '''returns a provider instance acording to the url'''
-    provider_domain = dict(youtube=Youtube, blip = Blip, vimeo=Vimeo) 
+    provider_domain = dict(youtube=Youtube, vimeo=Vimeo) 
     for domain, provider  in provider_domain.items():
         if domain in url:
             return provider(url, size) if size else provider(url)
+
+    return Embedly(url, size) if size else Embedly(url)
