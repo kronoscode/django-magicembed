@@ -9,6 +9,7 @@ except ImportError:
 import os
 
 install_requires = [
+    'Django>=1.0',
     'simplejson',
 ]
 
@@ -21,7 +22,7 @@ setup(
     author = 'Adolfo Fitoria',
     author_email = 'adolfo.fitoria@gmail.com',
     install_requires = install_requires,
-    packages = ['simplejson',] 
+    packages = [],
     include_package_data = True,
     classifiers = [
         'Development Status :: 3 - Alpha',
