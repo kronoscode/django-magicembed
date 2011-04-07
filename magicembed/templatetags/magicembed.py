@@ -1,5 +1,5 @@
 from django import template
-from cedaprode.autoembed.providers import get_provider
+from magicembed.providers import get_provider
 register = template.Library()
 
 @register.filter
