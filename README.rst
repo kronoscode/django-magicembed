@@ -4,7 +4,7 @@ Django Magic Embed
 Easy template tags and tools to embed video and get thumbnails form them.
 
 
-Instalation and use
+Installation and use
 -------------------
 1. python setup.py install
 2. add magicembed to INSTALLED_APPS
