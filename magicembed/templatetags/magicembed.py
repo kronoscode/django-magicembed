@@ -16,3 +16,5 @@ def magicthumbnail(value):
     ussage: {% http://myurl.com/|magicthumbnail: '/some/url' %}'''
     provider = get_provider(value)
     return provider.render_thumbnail()
+
+magicembed.is_safe = True
