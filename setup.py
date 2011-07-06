@@ -22,7 +22,7 @@ setup(
     author = 'Adolfo Fitoria',
     author_email = 'adolfo.fitoria@gmail.com',
     install_requires = install_requires,
-    packages = [],
+    packages = ['magicembed'],
     include_package_data = True,
     classifiers = [
         'Development Status :: 3 - Alpha',
