@@ -10,7 +10,6 @@ import os
 
 install_requires = [
     'Django>=1.0',
-    'simplejson',
 ]
 
 setup(

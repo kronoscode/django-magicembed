@@ -1,7 +1,7 @@
 from urlparse import parse_qs
 import re
 import urllib
-import simplejson
+from django.utils import simplejson
 
 class Provider(object):
 
@@ -10,16 +10,16 @@ class Provider(object):
         self.size = size
 
     def render_video(self):
-        '''simply returns html to render embed 
+        '''simply returns html to render embed
         video in a template'''
         raise NotImplementedError
-    
+
     def render_thumbnail(self, link_to):
         '''Renders the html with a link_to a parameter'''
         raise NotImplementedError
 
 class Youtube(Provider):
-    
+
     def __init__(self, url, size = (640, 480)):
         super(Youtube, self).__init__(url, size)
         qs = url.split('?')
@@ -40,10 +40,10 @@ class Vimeo(Provider):
         pattern = re.compile('http://(?:www\.)?vimeo\.com/([0-9]{1,12})')
         self.video_id = pattern.match(url).groups()[0]
         self.api_url = 'http://vimeo.com/api/v2/video/%s.json' % self.video_id
-        
+
     def render_video(self):
         html = '''<iframe src="http://player.vimeo.com/video/%s" width="%d" height="%d" frameborder="0"></iframe><p><a href="http://vimeo.com/%s">Das Pop: The Game</a> from <a href="http://vimeo.com/bigactive">Big Active</a> on <a href="http://vimeo.com">Vimeo</a>.</p>'''
-        return html % (self.video_id, self.size[0], 
+        return html % (self.video_id, self.size[0],
                 self.size[1], self.video_id)
 
     def render_thumbnail(self, link_to="#"):
@@ -57,7 +57,7 @@ class Embedly(Provider):
         self.api_url = 'http://api.embed.ly/1/oembed?url=%s&maxwidth=%s&format=json' % (url, size[0])
 
     def render_video(self):
-        return self._call_api()['html'] 
+        return self._call_api()['html']
 
     def render_thumbnail(self):
         return self._call_api()['thumbnail_url']
@@ -68,7 +68,7 @@ class Embedly(Provider):
 
 def get_provider(url, size=None):
     '''returns a provider instance acording to the url'''
-    provider_domain = dict(youtube=Youtube, vimeo=Vimeo) 
+    provider_domain = dict(youtube=Youtube, vimeo=Vimeo)
     for domain, provider  in provider_domain.items():
         if domain in url:
             return provider(url, size) if size else provider(url)
