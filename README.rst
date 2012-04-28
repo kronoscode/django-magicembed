@@ -10,7 +10,7 @@ Installation and use
 2. add magicembed to INSTALLED_APPS
 3. In the template 
 ...
-{% load magicembed %}
+{% load magicembed_tags %}
 ...
 
 {{ video|magicembed:"640x480" }}

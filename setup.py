@@ -1,12 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-try:
-    from setuptools.core import setup
-except ImportError:
-    from distutils.core import setup
-
-import os
+from setuptools import setup, find_packages
 
 install_requires = [
     'Django>=1.0',
@@ -14,21 +9,21 @@ install_requires = [
 
 setup(
     name = "magicembed",
-    version = "0.1",
+    version = "0.2",
     url = "http://github.com/fitoria/django-magicembed",
-    licence = 'MIT',
+    license = 'MIT',
     description = 'Django template filter utils to render videos an thumbnails.',
     author = 'Adolfo Fitoria',
     author_email = 'adolfo.fitoria@gmail.com',
     install_requires = install_requires,
-    packages = ['magicembed'],
+    packages = find_packages(),
     include_package_data = True,
     classifiers = [
         'Development Status :: 3 - Alpha',
         'Framework :: Django',
         'Intended Audience :: Developers',
-        'Licence :: OSI Approved :: MIT Licence',
-        'Programming Languaje :: Python',
         'Topic :: Internet :: WWW/HTTP',
     ]
 )
+
+print "There are some changes in this new version please read: http://github.com/fitoria/django-magicembed"
