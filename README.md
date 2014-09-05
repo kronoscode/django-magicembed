@@ -4,7 +4,9 @@ Django Magic Embed
 What is it?
 ------------
 
-Magic Embed are an easy and simple template tags and tools to embed video and get thumbnails from them.
+Magic Embed is an easy and simple Django template tag and tool to embed 
+video 
+and get thumbnails from video providers.
 
 Screenshots
 --------------
@@ -34,15 +36,17 @@ How to use
 ---------------
 
 First add this in the template to load the template tags
+
 <code>{% load magicembed_tags %}</code>
 
-Now if you need a embed video add this
+Now if you need to embed a video, add this template tag to video url 
+field
 
 <code>{{ video|magicembed:"width x height" }}</code>
 
 Or to get a thumbnail url
 
-{{ video|magicthumbnail }}
+<code>{{ video|magicthumbnail }}</code>
 
 How to contrib
 ----------------
