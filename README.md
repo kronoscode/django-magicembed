@@ -5,11 +5,19 @@ What is it?
 ------------
 
 Magic Embed is an easy and simple Django template tag and tool to embed 
-video 
-and get thumbnails from video providers.
+video and get thumbnails from video providers.
+
+Demo
+----------
+
+You can see here the [Magic Embed Demo](https://github.com/kronoscode/magic-embed-demo)
 
 Screenshots
 --------------
+
+![Submit Form](http://i.imgur.com/lVHKswj.png)
+![Embed Video](http://i.imgur.com/i66W7xv.png)
+![Thumbnail](http://i.imgur.com/7dSXmiB.png)
 
 Downloading
 ---------------
