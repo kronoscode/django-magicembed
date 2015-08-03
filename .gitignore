@@ -2,3 +2,4 @@
 *.swp
 dist/
 magicembed.egg-info/
+build

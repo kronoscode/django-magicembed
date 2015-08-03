@@ -1,7 +1,11 @@
-from urlparse import parse_qs
+# -*- coding: utf-8 -*-
+import json
 import re
 import urllib
-from django.utils import simplejson
+
+from urlparse import parse_qs
+
+from django.conf import settings
 
 class Provider(object):
 
@@ -37,8 +41,8 @@ class Vimeo(Provider):
 
     def __init__(self, url, size=(640, 480)):
         super(Vimeo, self).__init__(url, size)
-        pattern = re.compile('http://(?:www\.)?vimeo\.com/([0-9]{1,12})')
-        self.video_id = pattern.match(url).groups()[0]
+        pattern = re.compile('(http|https)://(?:www\.)?vimeo\.com/([0-9]{1,12})')
+        self.video_id = pattern.match(url).groups()[1]
         self.api_url = 'http://vimeo.com/api/v2/video/%s.json' % self.video_id
 
     def render_video(self):
@@ -47,14 +51,19 @@ class Vimeo(Provider):
                 self.size[1], self.video_id)
 
     def render_thumbnail(self, link_to="#"):
-        api_response = simplejson.loads(urllib.urlopen(self.api_url).read())
+        api_response = json.loads(urllib.urlopen(self.api_url).read())
         return api_response[0]['thumbnail_medium']
 
 class Embedly(Provider):
 
     def __init__(self, url, size=(640, 480)):
         super(Embedly, self).__init__(url, size)
-        self.api_url = 'http://api.embed.ly/1/oembed?url=%s&maxwidth=%s&format=json' % (url, size[0])
+        key = getattr(settings, "EMBEDLY_KEY", None)
+        if key != None:
+            self.api_url = 'http://api.embed.ly/1/oembed?key=%s&url=%s&maxwidth=%s&format=json' % (key, url, size[0])
+        else:
+            raise ValueError("If you want to use this please set the Embedly api key")
+
 
     def render_video(self):
         return self._call_api()['html']
@@ -63,7 +72,10 @@ class Embedly(Provider):
         return self._call_api()['thumbnail_url']
 
     def _call_api(self):
-        data = simplejson.loads(urllib.urlopen(self.api_url).read())
+        try:
+            data = json.loads(urllib.urlopen(self.api_url).read())
+        except IOError:
+            raise IOError("Please set the Embedly api key correctly")
         return data
 
 def get_provider(url, size=None):

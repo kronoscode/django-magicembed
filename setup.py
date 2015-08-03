@@ -9,7 +9,7 @@ install_requires = [
 
 setup(
     name = "magicembed",
-    version = "0.3",
+    version = "1.0.0",
     url = "http://github.com/kronoscode/django-magicembed",
     license = 'MIT',
     description = 'Django template filter utils to render videos an thumbnails.',

@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*-
 from django import template
-from magicembed.providers import get_provider
 from django.utils.safestring import mark_safe
+
+from magicembed.providers import get_provider
 
 register = template.Library()
 

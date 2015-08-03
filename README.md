@@ -1,10 +1,12 @@
+[![PyPI version](https://badge.fury.io/py/magicembed.svg)](http://badge.fury.io/py/magicembed)
+
 Django Magic Embed
 ==================
 
 What is it?
 ------------
 
-Magic Embed is an easy and simple Django template tag and tool to embed 
+Magic Embed is an easy and simple Django template tag and tool to embed
 video and get thumbnails from video providers.
 
 Demo
@@ -22,23 +24,32 @@ Screenshots
 Downloading
 ---------------
 
-You can download it from PyPI here
-	[PyPI-Magic Embed](https://pypi.python.org/pypi/magicembed/0.2)
+You can download it from [PyPI](https://pypi.python.org/pypi/magicembed/)
+
+Embedly API key
+------------------
+
+If you want to use [Embedly](http://embed.ly/) please create a new
+account and [generate the key](https://app.embed.ly/signup)
+
+When you have the API key, add this in your settings.py:
+
+    EMBEDLY_KEY='YourAwesomeAPIKey'
 
 How to install it?
 -------------------
 
-If you have a requeriments list add this to your requeriments 
+If you have a requeriments list add this to your requeriments
 
 1. <code>magicembed==(version)</code>
 
 2. <code>pip install -r requirements.txt</code>
 
+3. <code>add magicembed to **INSTALLED_APPS**</code>
+
 Or if you use setup.py
 
-1. add magicembed to **INSTALLED_APPS**
-
-2. run <code>python setup.py install</code>
+1. run <code>python setup.py install</code>
 
 How to use
 ---------------
@@ -47,7 +58,7 @@ First add this in the template to load the template tags
 
 <code>{% load magicembed_tags %}</code>
 
-Now if you need to embed a video, add this template tag to video url 
+Now if you need to embed a video, add this template tag to video url
 field
 
 <code>{{ video|magicembed:"width x height" }}</code>
@@ -68,3 +79,4 @@ How to contrib
 Licence
 --------------
 Licensed under [MIT](http://opensource.org/licenses/mit-license.php)
+
