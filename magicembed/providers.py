@@ -60,10 +60,7 @@ class Embedly(Provider):
         super(Embedly, self).__init__(url, size)
         key = getattr(settings, "EMBEDLY_KEY", None)
         if key != None:
-            try:
-                self.api_url = 'http://api.embed.ly/1/oembed?key=%s&url=%s&maxwidth=%s&format=json' % (key, url, size[0])
-            except IOError:
-                raise IOError("Please set the Embedly api key correctly")
+            self.api_url = 'http://api.embed.ly/1/oembed?key=%s&url=%s&maxwidth=%s&format=json' % (key, url, size[0])
         else:
             raise ValueError("If you want to use this please set the Embedly api key")
 
@@ -75,7 +72,10 @@ class Embedly(Provider):
         return self._call_api()['thumbnail_url']
 
     def _call_api(self):
-        data = json.loads(urllib.urlopen(self.api_url).read())
+        try:
+            data = json.loads(urllib.urlopen(self.api_url).read())
+        except IOError:
+            raise IOError("Please set the Embedly api key correctly")
         return data
 
 def get_provider(url, size=None):

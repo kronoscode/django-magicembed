@@ -1,3 +1,5 @@
+[![PyPI version](https://badge.fury.io/py/magicembed.svg)](http://badge.fury.io/py/magicembed)
+
 Django Magic Embed
 ==================
 
