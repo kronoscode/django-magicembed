@@ -24,8 +24,17 @@ Screenshots
 Downloading
 ---------------
 
-You can download it from PyPI here
-	[PyPI-Magic Embed](https://pypi.python.org/pypi/magicembed/0.2)
+You can download it from [PyPI](https://pypi.python.org/pypi/magicembed/)
+
+Embedly API key
+------------------
+
+If you want to use [Embedly](http://embed.ly/) please create a new
+account and [generate the key](https://app.embed.ly/signup)
+
+When you have the API key, add this in your settings.py:
+
+    EMBEDLY_KEY='YourAwesomeAPIKey'
 
 How to install it?
 -------------------
