@@ -1,0 +1,11 @@
+include AUTHORS
+include LICENSE
+include DESCRIPTION
+include CHANGELOG.txt
+include README.md
+include tox.ini
+include requirements.txt
+graft magicembed
+global-exclude *.orig *.pyc *.log *.swp local_settings.py
+prune magicembed/tests/coverage
+prune magicembed/.ropeproject
