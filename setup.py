@@ -1,29 +1,64 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
+"""
+Python setup file for the magicembed app.
 
+In order to register your app at pypi.python.org, create an account at
+pypi.python.org and login, then register your new app like so:
+
+    python setup.py register
+
+If your name is still free, you can now make your first release but first you
+should check if you are uploading the correct files:
+
+    python setup.py sdist
+
+Inspect the output thoroughly. There shouldn't be any temp files and if your
+app includes staticfiles or templates, make sure that they appear in the list.
+If something is wrong, you need to edit MANIFEST.in and run the command again.
+
+If all looks good, you can make your first release:
+
+    python setup.py sdist upload
+
+For new releases, you need to bump the version number in
+magicembed/__init__.py and re-run the above command.
+
+For more information on creating source distributions, see
+http://docs.python.org/2/distutils/sourcedist.html
+
+"""
+import os
 from setuptools import setup, find_packages
+import magicembed as app
 
-install_requires = [
-    'Django>=1.4',
+dev_requires = [
+    'flake8',
 ]
 
-setup(
-    name = "magicembed",
-    version = "1.0.0",
-    url = "http://github.com/kronoscode/django-magicembed",
-    license = 'MIT',
-    description = 'Django template filter utils to render videos an thumbnails.',
-    author = 'Adolfo Fitoria',
-    author_email = 'fitoria@kronoscode.com',
-    install_requires = install_requires,
-    packages = find_packages(),
-    include_package_data = True,
-    classifiers = [
-        'Development Status :: 3 - Alpha',
-        'Framework :: Django',
-        'Intended Audience :: Developers',
-        'Topic :: Internet :: WWW/HTTP',
-    ]
-)
+install_requires = open('requirements.txt').read().splitlines()
 
-print "There are some changes in this new version please read: http://github.com/kronoscode/django-magicembed"
+
+def read(fname):
+    try:
+        return open(os.path.join(os.path.dirname(__file__), fname)).read()
+    except IOError:
+        return ''
+
+setup(
+    name="django-magicembed",
+    version=app.__version__,
+    description=read('DESCRIPTION'),
+    long_description=read('README.rst'),
+    license='The MIT License',
+    platforms=['OS Independent'],
+    keywords='django, video, youtube, vimeo, embed, thumbnail',
+    author='Adolfo Fitoria',
+    author_email='fitoria@kronoscode.com',
+    url="https://github.com/kronoscode/django-magicembed",
+    packages=find_packages(),
+    include_package_data=True,
+    install_requires=install_requires,
+    extras_require={
+        'dev': dev_requires,
+    },
+)

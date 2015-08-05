@@ -6,6 +6,7 @@ from magicembed.providers import get_provider
 
 register = template.Library()
 
+
 @register.filter(is_safe=True)
 def magicembed(value, arg=None):
     '''value is the url and arg the size tuple
@@ -15,10 +16,10 @@ def magicembed(value, arg=None):
 
     return mark_safe(provider.render_video())
 
+
 @register.filter
 def magicthumbnail(value):
     '''value is the url and arg the link_to another url
     ussage: {% http://myurl.com/|magicthumbnail: '/some/url' %}'''
     provider = get_provider(value)
     return provider.render_thumbnail()
-

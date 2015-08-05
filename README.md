@@ -39,6 +39,17 @@ When you have the API key, add this in your settings.py:
 How to install it?
 -------------------
 
+To get the latest stable release from PyPI
+
+.. code-block:: bash
+     pip install django-magicembed
+
+To get the latest commit from GitHub
+
+.. code-block:: bash
+
+    pip install -e git+git://github.com/kronoscode/django-magicembed.git#egg=magicembed
+
 If you have a requeriments list add this to your requeriments
 
 1. <code>magicembed==(version)</code>
@@ -47,16 +58,21 @@ If you have a requeriments list add this to your requeriments
 
 3. <code>add magicembed to **INSTALLED_APPS**</code>
 
-Or if you use setup.py
+.. code-block:: python
+     INSTALLED_APPS = (
+         ...,
+        'magicembed',
+     )
 
-1. run <code>python setup.py install</code>
 
 How to use
 ---------------
 
-First add this in the template to load the template tags
+Before your tags/filters are available in your templates, load them by using
 
-<code>{% load magicembed_tags %}</code>
+.. code-block:: html
+
+  {% load magicembed_tags %}
 
 Now if you need to embed a video, add this template tag to video url
 field
@@ -67,14 +83,33 @@ Or to get a thumbnail url
 
 <code>{{ video|magicthumbnail }}</code>
 
+Run magicembed test
+--------------------
+
+If you want run test please set in the test_settings.py your
+Embedly Api Key correctly
+
+In order to run the tests, simply execute ``tox``. This will install two new
+environments (for Django 1.6 and Django 1.7) and run the tests against both
+environments.
+
 How to contrib
 ----------------
 
-1. Fork it ( http://github.com/kronoscode/django-magicembed/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+If you want to contribute to this project, please perform the following steps
+
+.. code-block:: bash
+
+     # Fork this repository
+     # Clone your fork
+     mkvirtualenv -p python2.7 django-magicembed
+     make develop
+
+     git co -b feature_branch master
+     # Implement your feature and tests
+     git add . && git commit
+     git push -u origin feature_branch
+     # Send us a pull request for your feature branch
 
 Licence
 --------------
