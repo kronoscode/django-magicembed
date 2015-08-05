@@ -127,17 +127,17 @@
 <div id="content-header">
   <h1>
     <span id="module-name">magicembed.providers</span>:
-    58 total statements,
-    <span class="normal">90.6% covered</span>
+    59 total statements,
+    <span class="normal">88.7% covered</span>
   </h1>
-  <p>Generated: Wed 2015-08-05 13:23 CST</p>
+  <p>Generated: Wed 2015-08-05 15:26 CST</p>
   <p>Source file: /Users/oscarmcm/Code/Django/django-magicembed/magicembed/providers.py</p>
   <p>
     Stats:
-    <span class="executed">48 executed</span>,
-    <span class="missed">5 missed</span>,
-    <span class="excluded">5 excluded</span>,
-    <span class="ignored">33 ignored</span> 
+    <span class="executed">47 executed</span>,
+    <span class="missed">6 missed</span>,
+    <span class="excluded">6 excluded</span>,
+    <span class="ignored">32 ignored</span> 
   </p> 
 </div>
 
@@ -150,8 +150,8 @@
 <li class="ignored"><code></code></li>
 <li class="excluded"><code>from urlparse import parse_qs</code></li>
 <li class="ignored"><code></code></li>
+<li class="excluded"><code>from django.core.exceptions import ImproperlyConfigured</code></li>
 <li class="excluded"><code>from django.conf import settings</code></li>
-<li class="ignored"><code></code></li>
 <li class="ignored"><code></code></li>
 <li class="executed"><code>class Provider(object):</code></li>
 <li class="ignored"><code></code></li>
@@ -210,20 +210,20 @@
 <li class="executed"><code>        if key is not None:</code></li>
 <li class="executed"><code>            self.api_url = 'http://api.embed.ly/1/oembed?key=%s&amp;url=%s&amp;maxwidth=%s&amp;format=json' % (key, url, size[0])</code></li>
 <li class="ignored"><code>        else:</code></li>
-<li class="missed"><code>            raise ValueError("If you want to use this please set the Embedly api key")</code></li>
+<li class="missed"><code>            raise ImproperlyConfigured("If you want to use this please set the Embedly api key")</code></li>
 <li class="ignored"><code></code></li>
 <li class="executed"><code>    def render_video(self):</code></li>
 <li class="executed"><code>        return self._call_api()['html']</code></li>
 <li class="ignored"><code></code></li>
 <li class="executed"><code>    def render_thumbnail(self):</code></li>
-<li class="executed"><code>        return self._call_api()['thumbnail_url']</code></li>
+<li class="missed"><code>        return self._call_api()['thumbnail_url']</code></li>
 <li class="ignored"><code></code></li>
 <li class="executed"><code>    def _call_api(self):</code></li>
 <li class="executed"><code>        try:</code></li>
 <li class="executed"><code>            data = json.loads(urllib.urlopen(self.api_url).read())</code></li>
-<li class="missed"><code>        except IOError:</code></li>
-<li class="missed"><code>            raise IOError("Please set the Embedly api key correctly")</code></li>
-<li class="executed"><code>        return data</code></li>
+<li class="executed"><code>        except ImproperlyConfigured:</code></li>
+<li class="missed"><code>            raise ImproperlyConfigured("Please set the Embedly api key correctly")</code></li>
+<li class="missed"><code>        return data</code></li>
 <li class="ignored"><code></code></li>
 <li class="ignored"><code></code></li>
 <li class="executed"><code>def get_provider(url, size=None):</code></li>

@@ -5,8 +5,8 @@ import urllib
 
 from urlparse import parse_qs
 
+from django.core.exceptions import ImproperlyConfigured
 from django.conf import settings
-
 
 class Provider(object):
 
@@ -65,7 +65,7 @@ class Embedly(Provider):
         if key is not None:
             self.api_url = 'http://api.embed.ly/1/oembed?key=%s&url=%s&maxwidth=%s&format=json' % (key, url, size[0])
         else:
-            raise ValueError("If you want to use this please set the Embedly api key")
+            raise ImproperlyConfigured("If you want to use this please set the Embedly api key")
 
     def render_video(self):
         return self._call_api()['html']
@@ -76,8 +76,8 @@ class Embedly(Provider):
     def _call_api(self):
         try:
             data = json.loads(urllib.urlopen(self.api_url).read())
-        except IOError:
-            raise IOError("Please set the Embedly api key correctly")
+        except ImproperlyConfigured:
+            raise ImproperlyConfigured("Please set the Embedly api key correctly")
         return data
 
 
