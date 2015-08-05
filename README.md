@@ -41,14 +41,15 @@ How to install it?
 
 To get the latest stable release from PyPI
 
-.. code-block:: bash
-     pip install django-magicembed
+```bash
+pip install django-magicembed
+```
 
 To get the latest commit from GitHub
 
-.. code-block:: bash
-
-    pip install -e git+git://github.com/kronoscode/django-magicembed.git#egg=magicembed
+```bash
+pip install -e git+git://github.com/kronoscode/django-magicembed.git#egg=magicembed
+```
 
 If you have a requeriments list add this to your requeriments
 
@@ -58,21 +59,21 @@ If you have a requeriments list add this to your requeriments
 
 3. <code>add magicembed to **INSTALLED_APPS**</code>
 
-.. code-block:: python
-     INSTALLED_APPS = (
-         ...,
-        'magicembed',
-     )
-
+```python
+INSTALLED_APPS = (
+  ...,
+  'magicembed',
+)
+```
 
 How to use
 ---------------
 
 Before your tags/filters are available in your templates, load them by using
 
-.. code-block:: html
-
-  {% load magicembed_tags %}
+```html
+{% load magicembed_tags %}
+```
 
 Now if you need to embed a video, add this template tag to video url
 field
@@ -98,7 +99,7 @@ How to contrib
 
 If you want to contribute to this project, please perform the following steps
 
-.. code-block:: bash
+```bash
 
      # Fork this repository
      # Clone your fork
@@ -110,6 +111,7 @@ If you want to contribute to this project, please perform the following steps
      git add . && git commit
      git push -u origin feature_branch
      # Send us a pull request for your feature branch
+```
 
 Licence
 --------------
