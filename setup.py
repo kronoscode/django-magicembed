@@ -45,7 +45,7 @@ def read(fname):
         return ''
 
 setup(
-    name="django-magicembed",
+    name="magicembed",
     version=app.__version__,
     description=read('DESCRIPTION'),
     long_description=read('README.rst'),

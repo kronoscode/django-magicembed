@@ -32,7 +32,7 @@ class Youtube(Provider):
         self.video_id = parse_qs(qs[1])['v'][0]
 
     def render_video(self):
-        html = '''<iframe title="YouTube video player" width="%d" height="%d" src="http://www.youtube.com/embed/%s" frameborder="0" allowfullscreen></iframe>''' # noqa
+        html = '''<iframe title="YouTube video player" width="%d" height="%d" src="https://www.youtube.com/embed/%s" frameborder="0" allowfullscreen></iframe>''' # noqa
         return html % (self.size[0], self.size[1], self.video_id)
 
     def render_thumbnail(self, link_to='#'):
