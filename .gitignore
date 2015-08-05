@@ -3,3 +3,5 @@
 dist/
 magicembed.egg-info/
 build
+.tox
+django_magicembed.egg-info
