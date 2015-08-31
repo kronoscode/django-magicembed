@@ -128,16 +128,16 @@
   <h1>
     <span id="module-name">magicembed.providers</span>:
     59 total statements,
-    <span class="normal">88.7% covered</span>
+    <span class="normal">90.6% covered</span>
   </h1>
-  <p>Generated: Wed 2015-08-05 15:26 CST</p>
-  <p>Source file: /Users/oscarmcm/Code/Django/django-magicembed/magicembed/providers.py</p>
+  <p>Generated: Sat 2015-08-29 16:25 CST</p>
+  <p>Source file: /home/jdavila/workspace/django/Proyectos/django-magicembed/magicembed/providers.py</p>
   <p>
     Stats:
-    <span class="executed">47 executed</span>,
-    <span class="missed">6 missed</span>,
+    <span class="executed">48 executed</span>,
+    <span class="missed">5 missed</span>,
     <span class="excluded">6 excluded</span>,
-    <span class="ignored">32 ignored</span> 
+    <span class="ignored">31 ignored</span> 
   </p> 
 </div>
 
@@ -177,7 +177,7 @@
 <li class="executed"><code>        self.video_id = parse_qs(qs[1])['v'][0]</code></li>
 <li class="ignored"><code></code></li>
 <li class="executed"><code>    def render_video(self):</code></li>
-<li class="executed"><code>        html = '''&lt;iframe title="YouTube video player" width="%d" height="%d" src="http://www.youtube.com/embed/%s" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;''' # noqa</code></li>
+<li class="executed"><code>        html = '''&lt;iframe title="YouTube video player" width="%d" height="%d" src="https://www.youtube.com/embed/%s" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;''' # noqa</code></li>
 <li class="executed"><code>        return html % (self.size[0], self.size[1], self.video_id)</code></li>
 <li class="ignored"><code></code></li>
 <li class="executed"><code>    def render_thumbnail(self, link_to='#'):</code></li>
@@ -193,9 +193,8 @@
 <li class="executed"><code>        self.api_url = 'http://vimeo.com/api/v2/video/%s.json' % self.video_id</code></li>
 <li class="ignored"><code></code></li>
 <li class="executed"><code>    def render_video(self):</code></li>
-<li class="executed"><code>        html = '''&lt;iframe src="http://player.vimeo.com/video/%s" width="%d" height="%d" frameborder="0"&gt;&lt;/iframe&gt;&lt;p&gt;&lt;a href="http://vimeo.com/%s"&gt;Das Pop: The Game&lt;/a&gt; from &lt;a href="http://vimeo.com/bigactive"&gt;Big Active&lt;/a&gt; on &lt;a href="http://vimeo.com"&gt;Vimeo&lt;/a&gt;.&lt;/p&gt;''' # noqa</code></li>
-<li class="executed"><code>        return html % (self.video_id, self.size[0],</code></li>
-<li class="ignored"><code>                self.size[1], self.video_id)</code></li>
+<li class="executed"><code>        html = '''&lt;iframe title="Vimeo video player" width="%d" height="%d" src="http://player.vimeo.com/video/%s" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;''' # noqa</code></li>
+<li class="executed"><code>        return html % (self.size[0], self.size[1], self.video_id)</code></li>
 <li class="ignored"><code></code></li>
 <li class="executed"><code>    def render_thumbnail(self, link_to="#"):</code></li>
 <li class="executed"><code>        api_response = json.loads(urllib.urlopen(self.api_url).read())</code></li>
@@ -216,14 +215,14 @@
 <li class="executed"><code>        return self._call_api()['html']</code></li>
 <li class="ignored"><code></code></li>
 <li class="executed"><code>    def render_thumbnail(self):</code></li>
-<li class="missed"><code>        return self._call_api()['thumbnail_url']</code></li>
+<li class="executed"><code>        return self._call_api()['thumbnail_url']</code></li>
 <li class="ignored"><code></code></li>
 <li class="executed"><code>    def _call_api(self):</code></li>
 <li class="executed"><code>        try:</code></li>
 <li class="executed"><code>            data = json.loads(urllib.urlopen(self.api_url).read())</code></li>
-<li class="executed"><code>        except ImproperlyConfigured:</code></li>
+<li class="missed"><code>        except ImproperlyConfigured:</code></li>
 <li class="missed"><code>            raise ImproperlyConfigured("Please set the Embedly api key correctly")</code></li>
-<li class="missed"><code>        return data</code></li>
+<li class="executed"><code>        return data</code></li>
 <li class="ignored"><code></code></li>
 <li class="ignored"><code></code></li>
 <li class="executed"><code>def get_provider(url, size=None):</code></li>

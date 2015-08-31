@@ -49,8 +49,7 @@ class Vimeo(Provider):
 
     def render_video(self):
         html = '''<iframe title="Vimeo video player" width="%d" height="%d" src="http://player.vimeo.com/video/%s" frameborder="0" allowfullscreen></iframe>''' # noqa
-        return html % (self.video_id, self.size[0],
-                self.size[1], self.video_id)
+        return html % (self.size[0], self.size[1], self.video_id)
 
     def render_thumbnail(self, link_to="#"):
         api_response = json.loads(urllib.urlopen(self.api_url).read())
