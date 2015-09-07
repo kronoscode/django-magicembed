@@ -127,14 +127,14 @@
   <h1>
     <span id="module-name">magicembed.templatetags.magicembed_tags</span>:
     12 total statements,
-    <span class="critical">0.0% covered</span>
+    <span class="normal">100.0% covered</span>
   </h1>
-  <p>Generated: Sat 2015-08-29 16:25 CST</p>
-  <p>Source file: /home/jdavila/workspace/django/Proyectos/django-magicembed/magicembed/templatetags/magicembed_tags.py</p>
+  <p>Generated: Mon 2015-09-07 14:04 CST</p>
+  <p>Source file: /home/jdavila/workspace/django/django-magicembed/magicembed/templatetags/magicembed_tags.py</p>
   <p>
     Stats:
-    <span class="executed">0 executed</span>,
-    <span class="missed">9 missed</span>,
+    <span class="executed">9 executed</span>,
+    <span class="missed">0 missed</span>,
     <span class="excluded">3 excluded</span>,
     <span class="ignored">13 ignored</span> 
   </p> 
@@ -148,25 +148,25 @@
 <li class="ignored"><code></code></li>
 <li class="excluded"><code>from magicembed.providers import get_provider</code></li>
 <li class="ignored"><code></code></li>
-<li class="missed"><code>register = template.Library()</code></li>
+<li class="executed"><code>register = template.Library()</code></li>
 <li class="ignored"><code></code></li>
 <li class="ignored"><code></code></li>
-<li class="missed"><code>@register.filter(is_safe=True)</code></li>
-<li class="missed"><code>def magicembed(value, arg=None):</code></li>
+<li class="executed"><code>@register.filter(is_safe=True)</code></li>
+<li class="executed"><code>def magicembed(value, arg=None):</code></li>
 <li class="ignored"><code>    '''value is the url and arg the size tuple</code></li>
 <li class="ignored"><code>    ussage: {% http://myurl.com/|magicembed:"640x480" %}'''</code></li>
-<li class="missed"><code>    arg = [int(item) for item in arg.split('x')]</code></li>
-<li class="missed"><code>    provider = get_provider(value, arg)</code></li>
+<li class="executed"><code>    arg = [int(item) for item in arg.split('x')]</code></li>
+<li class="executed"><code>    provider = get_provider(value, arg)</code></li>
 <li class="ignored"><code></code></li>
-<li class="missed"><code>    return mark_safe(provider.render_video())</code></li>
+<li class="executed"><code>    return mark_safe(provider.render_video())</code></li>
 <li class="ignored"><code></code></li>
 <li class="ignored"><code></code></li>
-<li class="missed"><code>@register.filter</code></li>
+<li class="executed"><code>@register.filter</code></li>
 <li class="ignored"><code>def magicthumbnail(value):</code></li>
 <li class="ignored"><code>    '''value is the url and arg the link_to another url</code></li>
 <li class="ignored"><code>    ussage: {% http://myurl.com/|magicthumbnail: '/some/url' %}'''</code></li>
-<li class="missed"><code>    provider = get_provider(value)</code></li>
-<li class="missed"><code>    return provider.render_thumbnail()</code></li>
+<li class="executed"><code>    provider = get_provider(value)</code></li>
+<li class="executed"><code>    return provider.render_thumbnail()</code></li>
   </ol>
 </div>
 

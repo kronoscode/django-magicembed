@@ -3,6 +3,8 @@ import unittest
 
 from mock import MagicMock, patch
 
+from django.template import Template, Context
+
 from magicembed.providers import (Youtube, Vimeo, Embedly, get_provider)
 
 
@@ -52,6 +54,22 @@ class ProvidersTest(unittest.TestCase):
         self.assertTrue(isinstance(get_provider(yt), Youtube))
         self.assertTrue(isinstance(get_provider(vimeo), Vimeo))
         self.assertTrue(isinstance(get_provider(blip), Embedly))
+
+
+class TemplateTagsTest(unittest.TestCase):
+
+    def test_magicembed_tag(self):
+        TEMPLATE = Template('''{% load magicembed_tags %} {{ 'http://vimeo.com/21443752/'|magicembed:"400x225" }}''')
+        rendered = TEMPLATE.render(Context({}))
+        self.assertIn("Vimeo video player", rendered, msg="title is not present.")
+
+    def test_magicthumbnail_tag(self):
+        thumbnail = '''http://i.vimeocdn.com/video/137933005_200x150.jpg'''
+        TEMPLATE = Template('''{% load magicembed_tags %} {{ 'http://vimeo.com/21443752/'|magicthumbnail }}''')
+
+        rendered = TEMPLATE.render(Context({}))
+        self.assertIn(thumbnail, rendered)
+
 
 if __name__ == '__main__':
     unittest.main()
