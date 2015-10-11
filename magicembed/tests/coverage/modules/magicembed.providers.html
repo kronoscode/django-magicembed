@@ -128,14 +128,14 @@
   <h1>
     <span id="module-name">magicembed.providers</span>:
     59 total statements,
-    <span class="normal">90.6% covered</span>
+    <span class="normal">96.2% covered</span>
   </h1>
-  <p>Generated: Mon 2015-09-07 14:04 CST</p>
-  <p>Source file: /home/jdavila/workspace/django/django-magicembed/magicembed/providers.py</p>
+  <p>Generated: Sat 2015-10-10 18:15 CST</p>
+  <p>Source file: /home/jdavila/workspace/django/Proyectos/django-magicembed/magicembed/providers.py</p>
   <p>
     Stats:
-    <span class="executed">48 executed</span>,
-    <span class="missed">5 missed</span>,
+    <span class="executed">51 executed</span>,
+    <span class="missed">2 missed</span>,
     <span class="excluded">6 excluded</span>,
     <span class="ignored">31 ignored</span> 
   </p> 
@@ -209,7 +209,7 @@
 <li class="executed"><code>        if key is not None:</code></li>
 <li class="executed"><code>            self.api_url = 'http://api.embed.ly/1/oembed?key=%s&amp;url=%s&amp;maxwidth=%s&amp;format=json' % (key, url, size[0])</code></li>
 <li class="ignored"><code>        else:</code></li>
-<li class="missed"><code>            raise ImproperlyConfigured("If you want to use this please set the Embedly api key")</code></li>
+<li class="executed"><code>            raise ImproperlyConfigured("If you want to use this please set the Embedly api key")</code></li>
 <li class="ignored"><code></code></li>
 <li class="executed"><code>    def render_video(self):</code></li>
 <li class="executed"><code>        return self._call_api()['html']</code></li>
@@ -220,8 +220,8 @@
 <li class="executed"><code>    def _call_api(self):</code></li>
 <li class="executed"><code>        try:</code></li>
 <li class="executed"><code>            data = json.loads(urllib.urlopen(self.api_url).read())</code></li>
-<li class="missed"><code>        except ImproperlyConfigured:</code></li>
-<li class="missed"><code>            raise ImproperlyConfigured("Please set the Embedly api key correctly")</code></li>
+<li class="executed"><code>        except IOError:</code></li>
+<li class="executed"><code>            raise ImproperlyConfigured("Please set the Embedly api key correctly")</code></li>
 <li class="executed"><code>        return data</code></li>
 <li class="ignored"><code></code></li>
 <li class="ignored"><code></code></li>

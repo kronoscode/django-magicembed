@@ -75,7 +75,7 @@ class Embedly(Provider):
     def _call_api(self):
         try:
             data = json.loads(urllib.urlopen(self.api_url).read())
-        except ImproperlyConfigured:
+        except IOError:
             raise ImproperlyConfigured("Please set the Embedly api key correctly")
         return data
 
