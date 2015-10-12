@@ -1,14 +1,19 @@
 # -*- coding: utf-8 -*-
-import unittest
-
 from mock import MagicMock, patch
 
+from django.core.exceptions import ImproperlyConfigured
 from django.template import Template, Context
+from django.test import TestCase
+
+try:
+    from django.test import override_settings
+except ImportError:
+    from django.test.utils import override_settings
 
 from magicembed.providers import (Youtube, Vimeo, Embedly, get_provider)
 
 
-class ProvidersTest(unittest.TestCase):
+class ProvidersTest(TestCase):
     def testYoutube(self):
         video = 'http://www.youtube.com/watch?v=693m7iCh-TE'
         yt = Youtube(video, (640, 510))
@@ -46,6 +51,18 @@ class ProvidersTest(unittest.TestCase):
         with patch('magicembed.providers.json.loads', api_call_mock):
             self.assertEqual(blip.render_thumbnail(), thumbnail)
 
+    @override_settings(EMBEDLY_KEY=None)
+    def test_Embedly_without_api_key(self):
+        with self.assertRaises(ImproperlyConfigured):
+            Embedly('https://vine.co/v/eHHOtXV5lxT')
+
+    def test_call_Embedly_api_without_key(self):
+        blip = Embedly('https://vine.co/v/eHHOtXV5lxT', (600, 400))
+
+        with self.settings(EMBEDLY_KEY=None):
+            with self.assertRaises(ImproperlyConfigured):
+                blip.render_thumbnail()
+
     def test_return_provider(self):
         yt = 'http://www.youtube.com/watch?v=693m7iCh-TE'
         vimeo = 'http://vimeo.com/21443752'
@@ -56,7 +73,7 @@ class ProvidersTest(unittest.TestCase):
         self.assertTrue(isinstance(get_provider(blip), Embedly))
 
 
-class TemplateTagsTest(unittest.TestCase):
+class TemplateTagsTest(TestCase):
 
     def test_magicembed_tag(self):
         TEMPLATE = Template('''{% load magicembed_tags %} {{ 'http://vimeo.com/21443752/'|magicembed:"400x225" }}''')
