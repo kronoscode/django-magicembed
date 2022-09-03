@@ -81,7 +81,7 @@ class Embedly(Provider):
 
 
 def get_provider(url, size=None):
-    '''returns a provider instance acording to the url'''
+    '''returns a provider instance according to the url'''
     provider_domain = dict(youtube=Youtube, vimeo=Vimeo)
     for domain, provider in provider_domain.items():
         if domain in url:

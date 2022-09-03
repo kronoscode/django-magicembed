@@ -51,7 +51,7 @@ To get the latest commit from GitHub
 pip install -e git+git://github.com/kronoscode/django-magicembed.git#egg=magicembed
 ```
 
-If you have a requeriments list add this to your requeriments
+If you have a requirements list add this to your requirements
 
 1. <code>magicembed==(version)</code>
 
